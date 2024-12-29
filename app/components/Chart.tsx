@@ -1,56 +1,30 @@
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-} from "chart.js";
-import { useSelector } from "react-redux";
-import { getMonthlyBillAmount } from "../util";
-import { monthList } from "../data";
+"use client"
+import React from "react";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+interface Props {
+  bills: {
+    id: string;
+    name: string;
+    amount: number;
+    category: string;
+    date: string;
+  }[];
+}
 
-export default function Chart() {
-  const billInfo = useSelector((bills) => bills);
-
-  const chartData = {
-    labels: monthList.map((month) => month.name),
-    datasets: [
-      {
-        label: "Amount",
-        data: getMonthlyBillAmount(billInfo),
-        backgroundColor: "blue"
-      }
-    ]
-  };
+const TimeSeriesChart: React.FC<Props> = ({ bills }) => {
+  // Implementation of chart using a library like Chart.js or Recharts.
   return (
-    <div className="chart-container">
-      <h2 style={{ textAlign: "center" }}>Monthly Bill Report</h2>
-      <Bar
-        data={chartData}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: "Data shows Total Bill Amount per month"
-            },
-            legend: {
-              display: false
-            }
-          }
-        }}
-      />
+    <div>
+      <h2>Time Series Chart</h2>
+      <ul>
+        {bills.map((bill) => (
+          <li key={bill.id}>
+            {bill.name}: ${bill.amount} - {bill.category} on {bill.date}
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
+
+export default TimeSeriesChart;
