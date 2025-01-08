@@ -30,12 +30,24 @@ interface DeleteBillArgs {
   billDetails: BillDetails;
 }
 
-export function deleteBill({ billDetails }: DeleteBillArgs) {
-  return function (dispatch: (action: { type: string; payload: BillDetails }) => void) {
-    dispatch({ type: DELETE, payload: billDetails });
-    toast("Bill Deleted");
+export function deleteBill({ id }: { id: number }) {
+
+  return {
+
+    type: DELETE,
+
+    payload: { id }
+
   };
+
 }
+
+// export function deleteBill({ billDetails }: DeleteBillArgs) {
+//   return function (dispatch: (action: { type: string; payload: BillDetails }) => void) {
+//     dispatch({ type: DELETE, payload: billDetails });
+//     toast("Bill Deleted");
+//   };
+// }
 
 interface EditBillArgs {
   billDetails: BillDetails;

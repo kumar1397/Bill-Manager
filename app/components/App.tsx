@@ -9,9 +9,9 @@ import { Link } from "@tanstack/react-location";
 import { columnInfo } from "../data";
 
 export default function App() {
-  const billInfo = useSelector((bills) => bills);
+  const billInfo = useSelector((bills: { [key: string]: any }[]) => bills);
 
-  const [currBills, setCurrBills] = useState(billInfo);
+  const [currBills, setCurrBills] = useState<{ [key: string]: any }[]>(billInfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
