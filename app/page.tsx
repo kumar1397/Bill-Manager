@@ -1,5 +1,5 @@
 import React from "react";
-import BillDashboard from "./components/BillDashboard";
+import BillDashboard from "./components/App";
 
 const App: React.FC = () => {
   return (

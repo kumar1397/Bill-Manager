@@ -1,15 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import billsReducer from "./bills/billsSlice";
-import budgetReducer from "./budget/budgetSlice";
+import billReducer from "./reducer";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
-const store = configureStore({
-  reducer: {
-    bills: billsReducer,
-    budget: budgetReducer,
-  },
-});
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-
-export default store;
+export default createStore(billReducer, applyMiddleware(thunk));
